@@ -1,23 +1,18 @@
-/*
-Denna funktion definierar reglerna för den feedback spelet ger när spelaren gissar ett ord. Den ska uppfylla följande kriterier:
+let word1 = "House";
+let word2 = "Games";
 
-Inputs: Två ord (två textsträngar)
-Ett ord som är gissningen
-Ett ord som är det korrekta ordet
-Funktionalitet: Kontrollera vilka bokstäver från det ena ordet som förekommer i det andra och i så fall var
-Output: En array med objekt, ett för varje bokstav i samma ordning som de förekommer i det gissade ordet, med följande attribut:
-letter (bokstaven)
-result (ett av följande värden)
-‘incorrect’: Finns inte med i det andra ordet
-‘misplaced’: Finns med i det andra ordet, men på annan plats
-‘correct’: Korrekt plats i det andra ordet 
-Exempel:
+export default function checkLetterMatch(word1, word2) {
+    word1 = word1.toUpperCase().split("");
+    word2 = word2.toUpperCase().split("");
+    for (let i = 0; i < word2.length; i++) {
+        if (word2[i] === word1[i]) {
+            console.log(`${word1[i]} / correct`);
+        } else if (word1.includes(word2[i])) {
+            console.log(`${word2[i]} / misplaced`);
+        } else {
+            console.log(`${word2[i]} / incorrect`);
+        }
+    }
+}
 
-Orden “CYKLA” (utvalt) och “HALLÅ” (gissning) skulle ge följande tillbaka:
-
-H / incorrect
-A / misplaced
-L / incorrect (eftersom det redan finns ett korrekt L)
-L / correct
-Å / incorrect
-*/
+checkLetterMatch(word1, word2);

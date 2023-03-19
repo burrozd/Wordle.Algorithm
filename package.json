@@ -1,0 +1,23 @@
+{
+    "name": "wordle-algorithm",
+    "version": "1.0.0",
+    "description": "",
+    "main": "algorithm.js",
+    "type": "module",
+    "dependencies": {
+        "@jest/globals": "^27.0.6"
+    },
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/burrozd/Wordle.Algorithm.git"
+    },
+    "author": "Burak",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/burrozd/Wordle.Algorithm/issues"
+    },
+    "homepage": "https://github.com/burrozd/Wordle.Algorithm#readme"
+}

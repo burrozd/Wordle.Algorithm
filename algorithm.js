@@ -14,5 +14,6 @@ export default function checkLetterMatch(word1, word2) {
         }
     }
 }
-
+export { word1 };
+export { word2 };
 checkLetterMatch(word1, word2);

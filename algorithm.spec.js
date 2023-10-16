@@ -1,23 +1,86 @@
-import { /* describe, */ expect, /* it */ test } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 import checkLetterMatch from "./algorithm";
-import { word1, word2 } from "./algorithm";
 
-/* describe("checkLetterMattch(word1,word2)", () => {
-  it("makes all letters upperCase()");
-  const result = checkLetterMatch("House");
-  expect(result).toBe("HOUSE");
-}); */
-
-test("test if word1 contains five letters", () => {
-    const word1Length = "House";
-    expect(word1Length.length).toBe(5);
+test("Test if letters are correct", () => {
+  const result = checkLetterMatch("CYKLA", "HALLÅ");
+  expect(result).toEqual([
+    { letter: "H", result: "incorrect" },
+    { letter: "A", result: "misplaced" },
+    { letter: "L", result: "incorrect" },
+    { letter: "L", result: "correct" },
+    { letter: "Å", result: "incorrect" },
+  ]);
 });
 
-test("word1 has five letters", () => {
-    expect(word1).toHaveLength(5);
+test("Test if both words are empty", () => {
+  const result = checkLetterMatch("", "");
+  expect(result).toEqual([]);
 });
 
-/* test("word2 is uppercase", () => {
-    checkLetterMatch(word1, word2);
-    expect(word2).toBe("GAMES");
-}); */
+test("Test if both words are the same", () => {
+  const result = checkLetterMatch("EXAMPLE", "EXAMPLE");
+  expect(result).toEqual([
+    { letter: "E", result: "correct" },
+    { letter: "X", result: "correct" },
+    { letter: "A", result: "correct" },
+    { letter: "M", result: "correct" },
+    { letter: "P", result: "correct" },
+    { letter: "L", result: "correct" },
+    { letter: "E", result: "correct" },
+  ]);
+});
+
+test("Test when both words are of different lengths", () => {
+  const result = checkLetterMatch("CAT", "CATER");
+  expect(result).toEqual([
+    { letter: "C", result: "correct" },
+    { letter: "A", result: "correct" },
+    { letter: "T", result: "correct" },
+  ]);
+});
+
+test("Test when the guessed word is longer than the correct word", () => {
+  const result = checkLetterMatch("TIGER", "TIG");
+  expect(result).toEqual([
+    { letter: "T", result: "correct" },
+    { letter: "I", result: "correct" },
+    { letter: "G", result: "correct" },
+  ]);
+});
+
+test("Test when both words contain special characters", () => {
+  const result = checkLetterMatch("W@rd", "W*rd");
+  expect(result).toEqual([
+    { letter: "W", result: "correct" },
+    { letter: "@", result: "misplaced" },
+    { letter: "*", result: "misplaced" },
+    { letter: "r", result: "correct" },
+    { letter: "d", result: "correct" },
+  ]);
+});
+
+test("Test when both words contain spaces", () => {
+  const result = checkLetterMatch("two words", "wwo rds");
+  expect(result).toEqual([
+    { letter: "t", result: "correct" },
+    { letter: "w", result: "misplaced" },
+    { letter: "o", result: "correct" },
+    { letter: " ", result: "correct" },
+    { letter: "w", result: "correct" },
+    { letter: "o", result: "correct" },
+    { letter: "r", result: "correct" },
+    { letter: "d", result: "correct" },
+    { letter: "s", result: "correct" },
+  ]);
+});
+
+test("Test when both words are completely different", () => {
+  const result = checkLetterMatch("APPLE", "BANANA");
+  expect(result).toEqual([
+    { letter: "A", result: "incorrect" },
+    { letter: "P", result: "incorrect" },
+    { letter: "P", result: "incorrect" },
+    { letter: "L", result: "incorrect" },
+    { letter: "E", result: "incorrect" },
+  ]);
+});
